@@ -1,0 +1,54 @@
+<div>
+    <mat-form-field class="filter">
+      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+<div class="container">
+  <div class=" mat-elevation-z8">
+    <mat-table mat-table [dataSource]="dataSource">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+      
+        <!-- Position Column -->
+        <ng-container matColumnDef="S NO">
+          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="UserName">
+          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.login}} </mat-cell>
+        </ng-container>
+      
+        <!-- Weight Column -->
+        <ng-container matColumnDef="URL">
+          <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+          <mat-cell *matCellDef="let element"> <div> <span>{{element.url}}</span>&nbsp;&nbsp;</div> </mat-cell>
+        </ng-container>
+      
+        <!-- Symbol Column -->
+        <!-- <ng-container matColumnDef="Type">
+          <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+        </ng-container> -->
+      
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getValue(row)"></mat-row>
+      </mat-table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 15, 20, 25, 30, 35, 40]"></mat-paginator> 
+    </div> 
+</div>
+
+<style>
+    .container {
+        position: relative;
+        margin: 2rem;
+    }
+
+    .filter {
+      position: relative;
+      margin: 2rem
+    }
+</style>
